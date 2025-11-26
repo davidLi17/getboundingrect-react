@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ 基础卡片样式 ============ */
+.card-item {
+  transition: all 0.3s ease;
+}
+
+.card-item.in-viewport {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.card-item.out-viewport {
+  transform: translateY(20px) scale(0.95);
+  opacity: 0.5;
+}
+
+.position-indicator {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ============ 可视化边界层 ============ */
+#visualOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 边界框 */
+.boundary-box {
+  position: absolute;
+  border: 2px solid #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+}
+
+/* 尺寸标签 */
+.dimension-label {
+  position: absolute;
+  background: #ef4444;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: monospace;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 坐标线 */
+.coordinate-line {
+  position: absolute;
+  background: #ef4444;
+}
+
+.coordinate-line.horizontal {
+  height: 2px;
+  width: 100%;
+}
+
+.coordinate-line.vertical {
+  width: 2px;
+  height: 100%;
+}
+
+/* 箭头线 */
+.arrow-line {
+  position: absolute;
+  background: #3b82f6;
+}
+
+.arrow-line::before,
+.arrow-line::after {
+  content: "";
+  position: absolute;
+  background: #3b82f6;
+}
+
+/* 水平箭头 */
+.arrow-line.horizontal {
+  height: 2px;
+}
+
+.arrow-line.horizontal::before {
+  left: 0;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid #3b82f6;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.arrow-line.horizontal::after {
+  right: 0;
+  top: -4px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #3b82f6;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+/* 垂直箭头 */
+.arrow-line.vertical {
+  width: 2px;
+}
+
+.arrow-line.vertical::before {
+  top: 0;
+  left: -4px;
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid #3b82f6;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+.arrow-line.vertical::after {
+  bottom: 0;
+  left: -4px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #3b82f6;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+
+/* 信息面板 */
+.info-panel {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: monospace;
+  line-height: 1.8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  min-width: 300px;
+}
+
+.info-panel .label {
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+.info-panel .value {
+  color: #34d399;
+}
+
+/* ============ 性能面板样式 ============ */
+.performance-panel {
+  position: sticky;
+  top: 120px;
+}
+
+/* ============ 智能 Tooltip 样式 ============ */
+.smart-tooltip {
+  animation: tooltip-fade-in 0.15s ease-out;
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ 对比视图样式 ============ */
+.comparison-view {
+  min-height: calc(100vh - 200px);
+}
+
+/* ============ 移动端适配 ============ */
+@media (max-width: 1024px) {
+  .performance-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+/* ============ 滚动条美化 ============ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
